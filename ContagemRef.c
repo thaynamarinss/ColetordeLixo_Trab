@@ -27,13 +27,19 @@ void atrib2(int *apontador, int *receptor){
     heap[pA].ct--;
 
     int count=heap[pR].ct + 1;
+    printf("==%d==",count);
     int val=heap[pR].valor;
 
     if(heap[pA].ct==0){
         ColetordeLixo(pA);
-        heap[pR-1].ct=count;
-        heap[pR-1].valor=val;
-        *receptor-=tamanho;
+        if(pR>pA){
+            heap[pR-1].ct=count;
+            heap[pR-1].valor=val;
+            *receptor-=tamanho;
+        }else{
+            heap[pR].ct=count;
+            heap[pR].valor=val;
+        }
     }
     *apontador=*receptor;
 }
@@ -61,7 +67,7 @@ int main(){
     PrintaHeap();
     printf("\n%d %d %d\n",&v,*v,v);
     printf("\n%d %d %d\n",&w,*w,w);
-    atrib2(&v, &w);
+    atrib2(&w, &v);
     PrintaHeap();
     printf("\n%d %d %d\n",&v,*v,v);
     printf("\n%d %d %d\n",&w,*w,w);
@@ -70,7 +76,7 @@ int main(){
     printf("\n%d %d %d\n",&v,*v,v);
     printf("\n%d %d %d\n",&w,*w,w);
     printf("\n%d %d %d\n",&c,*c,c);
-    atrib2(&v, &c);
+    atrib2(&c, &v);
     printf("\n%d %d %d\n",&v,*v,v);
     printf("\n%d %d %d\n",&w,*w,w);
     printf("\n%d %d %d\n",&c,*c,c);
